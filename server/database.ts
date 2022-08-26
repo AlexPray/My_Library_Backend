@@ -6,10 +6,10 @@ let instance: null | DbService = null;
 let connection: mysql.Connection;
 
 connection = mysql.createConnection({
-  host: "eporqep6b4b8ql12.chr7pe7iynqr.eu-west-1.rds.amazonaws.com",
-  user: "uvsoll761qnzyjx2",
-  password: "nxloveryb7e05h8j",
-  database: "yuzpxzj7r4rbxu5a",
+  host: "clwxydcjair55xn0.chr7pe7iynqr.eu-west-1.rds.amazonaws.com",
+  user: "yfrdrpgb5vp4tlpy",
+  password: "hvc3k2y2tw3n2evp",
+  database: "uvaemyk188brd136",
   port: 3306,
 });
 
