@@ -55,8 +55,8 @@ app.delete("/removeBook", (req, res) => {
     });
 });
 
-const PORT = 443;
+const PORT = 3030;
 
-app.listen(PORT, () => {
+app.listen(process.env.PORT || PORT, () => {
   console.log(`App listening on port ${PORT}`);
 });
