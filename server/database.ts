@@ -5,23 +5,13 @@ let instance: null | DbService = null;
 
 let connection: mysql.Connection;
 
-if (process.env.NODE_ENV === "production") {
-  connection = mysql.createConnection({
-    host: "sql11.freemysqlhosting.net",
-    user: "sql11515213",
-    password: "rksW6QXreE",
-    database: "sql11515213",
-    port: 3306,
-  });
-} else {
-  connection = mysql.createConnection({
-    host: "localhost",
-    user: "root",
-    password: "Sonnenberg01?",
-    database: "it_firma",
-    port: 3306,
-  });
-}
+connection = mysql.createConnection({
+  host: "sql11.freemysqlhosting.net",
+  user: "sql11515213",
+  password: "rksW6QXreE",
+  database: "sql11515213",
+  port: 3306,
+});
 
 connection.connect((err) => {
   if (err) {
