@@ -3,9 +3,10 @@
   "version": "1.0.0",
   "description": "",
   "main": "./dist/server.js",
-  "scripts": {
-    "compile": "tsc && npm run serve",
-    "serve": "node dist/server.js",
+  "scripts": {    
+    "build": "tsc",
+    "compile": "tsc && npm run start",
+    "start": "node dist/server.js",
     "dev": "nodemon -e ts -x \"npm run compile || exit 1\""
   },
   "keywords": [],

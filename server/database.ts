@@ -7,10 +7,10 @@ let connection: mysql.Connection;
 
 if (process.env.NODE_ENV === "production") {
   connection = mysql.createConnection({
-    host: "eporqep6b4b8ql12.chr7pe7iynqr.eu-west-1.rds.amazonaws.com",
-    user: "ps7evbwwlw0lc09s",
-    password: "uvuz4p58gpwmd6k6?",
-    database: "wrhpbg3uiucioepe",
+    host: "sql11.freemysqlhosting.net",
+    user: "sql11515213",
+    password: "rksW6QXreE",
+    database: "sql11515213",
     port: 3306,
   });
 } else {
