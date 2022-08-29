@@ -6,11 +6,11 @@ let instance: null | DbService = null;
 let connection: mysql.Connection;
 
 connection = mysql.createConnection({
-  host: "clwxydcjair55xn0.chr7pe7iynqr.eu-west-1.rds.amazonaws.com",
-  user: "yfrdrpgb5vp4tlpy",
-  password: "hvc3k2y2tw3n2evp",
-  database: "uvaemyk188brd136",
-  port: 3306,
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  password: process.env.DB_PW,
+  database: process.env.DB_NAME,
+  port: (process.env.DB_PORT) ? parseInt(process.env.DB_PORT, 10) : 3306,
 });
 
 connection.connect((err) => {
