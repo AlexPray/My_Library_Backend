@@ -29,7 +29,7 @@ class DbService {
     try {
       let response = await new Promise((resolve, reject) => {
         const query =
-          "SELECT googleId, title, authors, thumbnail FROM it_firma.my_library";
+          "SELECT googleId, title, authors, thumbnail FROM my_library";
         connection.query(query, (err, results) => {
           if (err) reject(new Error(err.message));
           resolve(results);
@@ -45,7 +45,7 @@ class DbService {
   async addNewBook(book: Book) {
     return await new Promise((resolve, reject) => {
       const query =
-        "INSERT INTO `it_firma`.`my_library` (`Title`, `Authors`, `Thumbnail`, `GoogleId`) VALUES (?, ?, ?, ?)";
+        "INSERT INTO `my_library` (`Title`, `Authors`, `Thumbnail`, `GoogleId`) VALUES (?, ?, ?, ?)";
       connection.query(
         query,
         [book.title, book.authors, book.thumbnail, book.googleId],
@@ -61,7 +61,7 @@ class DbService {
     try {
       return await new Promise((resolve, reject) => {
         const query =
-          "DELETE FROM `it_firma`.`my_library` WHERE `GoogleId` = ?"
+          "DELETE FROM `my_library` WHERE `GoogleId` = ?"
         connection.query(
           query,
           [book.googleId],
