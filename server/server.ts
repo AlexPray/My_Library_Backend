@@ -1,6 +1,7 @@
 import express, { Request, Response, NextFunction, response } from "express";
 import DbService from "./database";
 import cors from "cors";
+import Book from "./API/Book";
 const app = express();
 
 app.use(
@@ -23,6 +24,8 @@ app.post("/addBook", (req, res) => {
   const db = DbService.getDbServiceInstance();
   db.addNewBook(req.body)
     .then(response => {
+      console.log(req.body);
+
       res.json({ status: "success" }).status(200);
     })
     .catch(err => {
@@ -56,6 +59,22 @@ app.delete("/removeBook", (req, res) => {
 });
 
 const PORT = process.env.PORT || 3030;
+
+function resetLibrary() {
+  const db = DbService.getDbServiceInstance();
+
+  // DELETE ALL
+  db.deleteAllBooks();
+
+  // ADD some books
+  const book2 = new Book();
+  book2.title = "Why Not Hire Me?";
+  book2.googleId = "aEGnMKBnuFIC";
+  book2.authors = [''];
+  book2.thumbnail = "http://books.google.com/books/content?id=aEGnMKBnuFIC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api";
+  db.addNewBook(book2);
+}
+setInterval(resetLibrary, 10 * 60 * 1000);
 
 app.listen(PORT, () => {
   console.log(`App listening on port ${PORT}`);

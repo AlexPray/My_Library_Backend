@@ -5,13 +5,25 @@ let instance: null | DbService = null;
 
 let connection: mysql.Connection;
 
-connection = mysql.createConnection({
-  host: process.env.DB_HOST,
-  user: process.env.DB_USER,
-  password: process.env.DB_PW,
-  database: process.env.DB_NAME,
-  port: (process.env.DB_PORT) ? parseInt(process.env.DB_PORT, 10) : 3306,
-});
+if (process.env.NODE_ENV === 'production') {
+  connection = mysql.createConnection({
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    password: process.env.DB_PW,
+    database: process.env.DB_NAME,
+    port: (process.env.DB_PORT) ? parseInt(process.env.DB_PORT, 10) : 3306,
+  });
+} else {
+  connection = mysql.createConnection({
+    host: "localhost",
+    user: "root",
+    password: "Sonnenberg01?",
+    database: "it_firma",
+    port: 3306,
+  });
+}
+
+
 
 connection.connect((err) => {
   if (err) {
@@ -65,6 +77,24 @@ class DbService {
         connection.query(
           query,
           [book.googleId],
+          (err, results) => {
+            if (err) reject(err);
+            resolve(results);
+          }
+        );
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  async deleteAllBooks() {
+    try {
+      return await new Promise((resolve, reject) => {
+        const query =
+          "DELETE FROM `my_library`"
+        connection.query(
+          query,
           (err, results) => {
             if (err) reject(err);
             resolve(results);
