@@ -28,8 +28,9 @@ if (process.env.NODE_ENV === 'production') {
 connection.connect((err) => {
   if (err) {
     console.log(err.message);
+  } else {
+    console.log("to database connected");
   }
-  console.log("to database connected");
 });
 
 class DbService {
